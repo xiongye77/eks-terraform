@@ -71,3 +71,6 @@ kube-system     aws-load-balancer-controller    arn:aws:iam::996104769930:role/e
   kubectl -n kube-system logs -f  aws-load-balancer-controller-58df4cd9dd-fxhdm
   
  
+ # create ingress class
+ kubectl apply -f 01-ingressclass-resource.yaml
+ 
