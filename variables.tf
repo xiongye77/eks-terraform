@@ -38,3 +38,18 @@ variable "tags" {
     "Owner"       = "Ye Xiong"
   }
 }
+
+
+variable "demo_dns_zone" {
+  description = "Specific to your setup, pick a public domain you have in route53, this must be changed. check output of aws route53 list-hosted-zones"
+  default = "poc.csnglobal.net"
+
+}
+
+
+variable "demo_dns_name" {
+  description = " A demo domain name for the web access"
+  default     = "sslingress"
+}
+
+
