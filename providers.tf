@@ -10,5 +10,6 @@ terraform {
 }
 
 provider "aws" {
+  alias = "account_route53"
   region = var.region
 }
