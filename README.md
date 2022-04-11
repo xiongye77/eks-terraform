@@ -37,6 +37,7 @@ eksctl  get iamserviceaccount --cluster eks-test-cluster
 
 
 2022-04-11 07:01:16 [ℹ]  eksctl version 0.74.0
+
 2022-04-11 07:01:16 [ℹ]  using region ap-southeast-2
 NAMESPACE       NAME                            ROLE ARN
 kube-system     aws-load-balancer-controller    arn:aws:iam::996104769930:role/eksctl-eks-test-cluster-addon-iamserviceacco-Role1-1RN1BJRQS2ZZ8
