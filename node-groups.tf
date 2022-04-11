@@ -24,6 +24,7 @@ resource "aws_eks_node_group" "this" {
     aws_iam_role_policy_attachment.node_AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.node_AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.node_AmazonEC2ContainerRegistryReadOnly,
+     aws_iam_role_policy_attachment.node_AmazonSSMNodePolicy
   ]
 }
 
@@ -47,6 +48,13 @@ resource "aws_iam_role" "node" {
 }
 POLICY
 }
+
+
+resource "aws_iam_role_policy_attachment" "node_AmazonSSMNodePolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  role       = aws_iam_role.node.name
+}
+
 
 resource "aws_iam_role_policy_attachment" "node_AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
