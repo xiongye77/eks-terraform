@@ -44,3 +44,30 @@ kube-system     aws-load-balancer-controller    arn:aws:iam::996104769930:role/e
 
 
  kubectl get sa aws-load-balancer-controller -n kube-system
+ 
+ 
+ 
+ # Install AWS Load Balancer Controller
+ helm repo add eks https://aws.github.io/eks-charts
+ 
+ helm repo update
+ 
+ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+  -n kube-system \
+  --set clusterName=eks-test-cluster \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=aws-load-balancer-controller \
+  --set region=ap-southeast-2 \
+  --set vpcId=vpc-0ef551cc525ec3dcf \
+  --set image.repository=602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-load-balancer-controller
+  
+  # verify using following commands
+  
+  helm list --all-namespaces
+  
+  
+  kubectl -n kube-system get svc
+  kubectl -n kube-system get pods
+  kubectl -n kube-system logs -f  aws-load-balancer-controller-58df4cd9dd-fxhdm
+  
+ 
