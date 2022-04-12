@@ -74,6 +74,11 @@ kube-system     aws-load-balancer-controller    arn:aws:iam::996104769930:role/e
   kubectl -n kube-system get pods
   kubectl -n kube-system logs -f  aws-load-balancer-controller-58df4cd9dd-fxhdm
   
+  
+ # if you want to use AWS codebuild for run EKS deployment tasks, such as terraform apply/kubectl get nodes...
+ Make sure you check following link if you met issue "error: You must be logged in to the server (Unauthorized)"
+ https://aws.amazon.com/premiumsupport/knowledge-center/codebuild-eks-unauthorized-errors/
+ 
  
  # create ingress class
  kubectl apply -f 01-ingressclass-resource.yaml
