@@ -74,8 +74,10 @@ kube-system     aws-load-balancer-controller    arn:aws:iam::996104769930:role/e
   kubectl -n kube-system get pods
   kubectl -n kube-system logs -f  aws-load-balancer-controller-58df4cd9dd-fxhdm
   
-  
- # if you want to use AWS codebuild for run EKS deployment tasks, such as terraform apply/kubectl get nodes...
+ # You can use code in cicd-codecommit-codebuild folder to create codecommit repo and codebuild project (buildspec.yml),linked them together use codepipeline.
+ 
+ 
+ # if you want to use AWS codebuild for run EKS deployment tasks, when run command such as kubectl get nodes at Codebuild, maybe get error.
  Make sure you check following link if you met issue "error: You must be logged in to the server (Unauthorized)"
  https://aws.amazon.com/premiumsupport/knowledge-center/codebuild-eks-unauthorized-errors/
  
