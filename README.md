@@ -1,3 +1,6 @@
+# we can use terraform helm_release (helm_loadbalancer.tf) to install the aws-load-balancer-controller repo 
+
+
 # eks-terraform
 
 After terraform apply finished (vpc and all eks cluster/nodes creation finished ), make sure run following command to add  new context arn:aws:eks:ap-southeast-2:996104769930:cluster/eks-test-cluster to /home/ec2-user/.kube/config 
