@@ -1,31 +1,15 @@
 # we can use terraform helm_release (helm_loadbalancer.tf) to install the aws-load-balancer-controller from eks repo 
-
-
-[ec2-user@ip-192-168-20-103 terraform-eks]$ helm search repo eks
-NAME                                            CHART VERSION   APP VERSION     DESCRIPTION
-eks/amazon-ec2-metadata-mock                    1.10.1                          A Helm chart for Amazon EC2 Metadata Mock
-eks/appmesh-controller                          1.4.5           1.4.3           App Mesh controller Helm chart for Kubernetes
-eks/appmesh-gateway                             0.1.5           1.0.0           App Mesh Gateway Helm chart for Kubernetes
-eks/appmesh-grafana                             1.0.4           6.4.3           App Mesh Grafana Helm chart for Kubernetes
-eks/appmesh-inject                              0.14.8          0.5.0           App Mesh Inject Helm chart for Kubernetes
-eks/appmesh-jaeger                              1.0.3           1.29.0          App Mesh Jaeger Helm chart for Kubernetes
-eks/appmesh-prometheus                          1.0.0           2.13.1          App Mesh Prometheus Helm chart for Kubernetes
-eks/appmesh-spire-agent                         1.0.2           1.0.0           SPIRE Agent Helm chart for AppMesh mTLS support...
-eks/appmesh-spire-server                        1.0.2           1.0.0           SPIRE Server Helm chart for AppMesh mTLS suppor...
-eks/aws-calico                                  0.3.11          3.19.1          A Helm chart for installing Calico on AWS
-eks/aws-cloudwatch-metrics                      0.0.7           1.247350        A Helm chart to deploy aws-cloudwatch-metrics p...
-eks/aws-for-fluent-bit                          0.1.15          2.21.5          A Helm chart to deploy aws-for-fluent-bit project
-eks/aws-load-balancer-controller                1.4.1           v2.4.1          AWS Load Balancer Controller Helm chart for Kub...
-eks/aws-node-termination-handler                0.18.1          1.16.1          A Helm chart for the AWS Node Termination Handler.
-eks/aws-sigv4-proxy-admission-controller        0.1.2           1               AWS SIGv4 Admission Controller Helm Chart for K...
-eks/aws-vpc-cni                                 1.1.14          v1.10.2         A Helm chart for the AWS VPC CNI
-eks/csi-secrets-store-provider-aws              0.0.2           1.0.r2          A Helm chart to install the Secrets Store CSI D...
-
-
 [ec2-user@ip-192-168-20-103 terraform-eks]$ helm repo list
+
 NAME            URL
 apache-airflow  https://airflow.apache.org
 eks             https://aws.github.io/eks-charts
+
+
+[ec2-user@ip-192-168-20-103 terraform-eks]$ helm search repo eks
+
+
+
 
 
 
