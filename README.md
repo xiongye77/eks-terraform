@@ -24,6 +24,10 @@ kubectl get sa aws-load-balancer-controller -n kube-system
 # create IAM OIDC provider associated with cluster
 eksctl utils associate-iam-oidc-provider --region=ap-southeast-2 --cluster=eks-test-cluster  --approve
 
+# in case if you want to delete the iam-oidc-provider
+
+OIDCURL=$(aws eks describe-cluster --name $CLUSTER_NAME --output json | jq -r .cluster.identity.oidc.issuer | sed -e "s*https://**")
+aws iam delete-open-id-connect-provider --open-id-connect-provider-arn arn:aws:iam::$ACCOUNT_ID:oidc-provider/$OIDCURL
 
 # create iamserviceaccount 
 
@@ -40,14 +44,29 @@ eksctl create iamserviceaccount \
 eksctl  get iamserviceaccount --cluster eks-test-cluster
 
 
+# in case if you want to delete iamserviceaccount  
+[ec2-user@ip-192-168-20-103 terraform-eks]$  eksctl delete iamserviceaccount --cluster eks-cluster  --name aws-load-balancer-controller --namespace=kube-system
+
+2022-04-19 00:37:41 [ℹ]  eksctl version 0.74.0
+2022-04-19 00:37:41 [ℹ]  using region ap-southeast-2
+2022-04-19 00:37:42 [ℹ]  1 iamserviceaccount (kube-system/aws-load-balancer-controller) was included (based on the include/exclude rules)
+2022-04-19 00:37:42 [ℹ]  1 task: {
+    2 sequential sub-tasks: {
+        delete IAM role for serviceaccount "kube-system/aws-load-balancer-controller" [async],
+        delete serviceaccount "kube-system/aws-load-balancer-controller",
+    } }2022-04-19 00:37:42 [ℹ]  will delete stack "eksctl-eks-cluster-addon-iamserviceaccount-kube-system-aws-load-balancer-controller"
+2022-04-19 00:37:43 [ℹ]  serviceaccount "kube-system/aws-load-balancer-controller" was already deleted
+
+
 2022-04-11 07:01:16 [ℹ]  eksctl version 0.74.0
 
 2022-04-11 07:01:16 [ℹ]  using region ap-southeast-2
 NAMESPACE       NAME                            ROLE ARN
+
 kube-system     aws-load-balancer-controller    arn:aws:iam::996104769930:role/eksctl-eks-test-cluster-addon-iamserviceacco-Role1-1RN1BJRQS2ZZ8
 
 
- kubectl get sa aws-load-balancer-controller -n kube-system
+kubectl get sa aws-load-balancer-controller -n kube-system
  
  
  
@@ -69,6 +88,11 @@ kube-system     aws-load-balancer-controller    arn:aws:iam::996104769930:role/e
   
   helm list --all-namespaces
   
+  helm ls  -n kube-system
+
+NAME                            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                                   APP VERSION
+aws-load-balancer-controller    kube-system     1               2022-04-19 00:14:34.759154489 +0000 UTC deployed        aws-load-balancer-controller-1.4.1      v2.4.1
+
   
   kubectl -n kube-system get svc
   kubectl -n kube-system get pods
