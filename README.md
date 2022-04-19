@@ -26,7 +26,8 @@ eksctl utils associate-iam-oidc-provider --region=ap-southeast-2 --cluster=eks-t
 
 # in case if you want to delete the iam-oidc-provider
 
-OIDCURL=$(aws eks describe-cluster --name $CLUSTER_NAME --output json | jq -r .cluster.identity.oidc.issuer | sed -e "s*https://**")
+OIDCURL=$(aws eks describe-cluster --name $CLUSTER_NAME --output json | jq -r .cluster.identity.oidc.issuer | sed -e "s*https://**") 
+
 aws iam delete-open-id-connect-provider --open-id-connect-provider-arn arn:aws:iam::$ACCOUNT_ID:oidc-provider/$OIDCURL
 
 # create iamserviceaccount 
